@@ -1,0 +1,7 @@
+name = CoderDojo IC Custom Module
+description = "Custom modifications related to CoDoIC"
+package = CoderDojoIC
+version = 7.x-1.x-dev
+dependencies[] = achievements
+
+core = 7.x
