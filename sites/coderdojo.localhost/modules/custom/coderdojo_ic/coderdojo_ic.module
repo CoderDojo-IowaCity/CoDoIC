@@ -54,37 +54,156 @@
  */
 function coderdojo_ic_achievements_info() {
   $achievements = array(
-  	'belts' => array(
-  		'title'=>'Belts',
-  		'achievements' => array(
-  			'whitebelt' => array(
-      			'title'       => t('White Belt'),
-      			'description' => t("Attended CoderDojo for 5 sessions."),
-      			'points'      => 1,
-      			'images' => array(
-      				'unlocked'  => '/coderdojo/sites/default/files/achievements/belts/WhiteBelt.png',
-      				),
-    		),
-  		),
-  	),
-  	//'Badges' => array(
-  		//'title'=>'Badges',
-  			//'achievements' => array(
-  				'html5' => array(
-  					'title'=>'HTML5',
-    				'achievements' => array(
-    					'html5_1' => array(
-    	  				'title'       => t('HTML5 Badge 1'),
-    	  				'description' => t('Completed the first of the HTML5 badges'),
-    	  				'points'      => 1,
-    	  				'images' => array(
-    	    					'unlocked'  => '/coderdojo/sites/default/files/achievements/badges/HTML5/HTML5_1.png',
-    	  					),
-    					),
-  					),
-  				),
-  			//),
-    //),
+    'belts' => array(
+      'title'=>'Belts',
+      'achievements' => array(
+        'belt_white' => array(
+          'title'       => t('White Belt (Initiate)'),
+          'description' => t("Attended CoderDojo for 5 sessions"),
+          'points'      => 20,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/belts/white.png'
+          ),
+        ),
+        'belt_yellow' => array(
+          'title'       => t('Yellow Belt (Trainee)'),
+          'description' => t("Obtained White belt and 5 basic badges"),
+          'points'      => 200,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/belts/yellow.png'
+          ),
+        ),
+        'belt_blue' => array(
+          'title'       => t('Blue Belt (Adherent)'),
+          'description' => t("Obtained Yellow belt, 1 junior badges and 3 basic badges"),
+          'points'      => 300,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/belts/blue.png'
+          ),
+        ),
+        'belt_red' => array(
+          'title'       => t('Red Belt (Apprentice)'),
+          'description' => t("Obtained Blue belt, 3 junior badges and 1 senior badge"),
+          'points'      => 500,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/belts/red.png'
+          ),
+        ),
+        'belt_black' => array(
+          'title'       => t('Black Belt (Master)'),
+          'description' => t("Obtained Red belt and 4 senior badges"),
+          'points'      => 1000,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/belts/black.png'
+          ),
+        ),
+      ),
+    ),
+    'badges' => array(
+      'title'=>'Badges',
+      'achievements' => array(
+        // HTML5
+        'html5_basic' => array(
+          'title'       => t('Basic HTML5'),
+          'description' => t('Completed basic HTML5 application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/html5/html5_basic.png'
+          ),
+        ),
+        'html5_junior' => array(
+          'title'       => t('Junior HTML5'),
+          'description' => t('Completed junior HTML5 application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/html5/html5_junior.png'
+          ),
+        ),
+        'html5_senior' => array(
+          'title'       => t('Senior HTML5'),
+          'description' => t('Completed senior HTML5 application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/html5/html5_senior.png'
+          ),
+        ),
+        // Java
+        'java_basic' => array(
+          'title'       => t('Basic Java'),
+          'description' => t('Completed basic Java application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/java/java_basic.png'
+          ),
+        ),
+        'java_junior' => array(
+          'title'       => t('Junior Java'),
+          'description' => t('Completed junior Java application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/java/java_junior.png'
+          ),
+        ),
+        'java_senior' => array(
+          'title'       => t('Senior Java'),
+          'description' => t('Completed senior Java application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/java/java_senior.png'
+          ),
+        ),
+        'java_minecraft_modder' => array(
+          'title'       => t('Minecraft Modder'),
+          'description' => t('Completed Minecraft modding application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/java/java_minecraft_modder.png'
+          ),
+        ),
+        // JS
+        'javascript_basic' => array(
+          'title'       => t('Basic JavaScript'),
+          'description' => t('Completed basic JavaScript application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_basic.png'
+          ),
+        ),
+        'javascript_junior' => array(
+          'title'       => t('Junior JavaScript'),
+          'description' => t('Completed junior JavaScript application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_junior.png'
+          ),
+        ),
+        'javascript_senior' => array(
+          'title'       => t('Senior JavaScript'),
+          'description' => t('Completed senior JavaScript application'),
+          'points'      => 10,
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_senior.png'
+          ),
+        ),
+
+      ),
+    ),
+  );
 
     // An example of achievement groups: 'article-creation' is the group ID,
     // "Article creation" is the group title, and all relevant achievements are
@@ -100,13 +219,14 @@ function coderdojo_ic_achievements_info() {
           'images' => array(
             'unlocked'  => '/sites/default/files/example1.png',
             'locked'    => '/sites/default/files/example2.png',
-            'secret'    => '/sites/default/files/example3.png',
+            'secret'    => '/sites/default/files/example3.png'
             // all default images have been replaced.
           ),
         ),
       ),
-    ),*/
+    ),
   );
+  */
 
   return $achievements;
 }
