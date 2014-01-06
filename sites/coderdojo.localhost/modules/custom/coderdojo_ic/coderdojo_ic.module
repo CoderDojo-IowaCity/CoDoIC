@@ -1,57 +1,10 @@
 <?php
 /**
- * Define an achievement.
- *
- * This hook describes your achievements to the base module so that it can
- * create the pages and caches necessary for site-wide display. The base
- * module doesn't know how to unlock any of your achievements... instead, you
- * use Drupal's existing hooks, the achievement storage tables, and a few
- * helper functions to complete the workflow. See the remaining documentation
- * in this file for further code samples.
- *
- * There are many different kinds of achievements, and it's accurate enough to
- * say that if you can measure or respond to an action, it can be made into a
- * matching achievement. Be creative. Look at what others are doing. Have fun.
- * Your gamification efforts will fail or be un-fun if you don't have a gamer
- * helping you, if you make everything a mindless grind, or if you simply
- * copy achievements from another site or install.
- *
- * @return
- *   An array whose keys are internal achievement IDs (32 chars max) and whose
- *   values identify properties of the achievement. These properties are:
- *   - title: (required) The title of the achievement.
- *   - description: (required) A description of the achievement.
- *   - points: (required) How many points the user will earn when unlocked.
- *   - images: (optional) An array of (optional) keys 'locked', 'unlocked',
- *     and 'secret' whose values are image file paths. Achievements exist in
- *     three separate display states: unlocked (the user has it), locked (the
- *     user doesn't have it), and secret (the user doesn't have it, and the
- *     achievement is a secret). Each state can have its own default image
- *     associated with it (which administrators can configure), or achievements
- *     can specify their own images for one, some, or all states.
- *   - storage: (optional) If you store statistics for your achievement, the
- *     core module assumes you've used the achievement ID for the storage
- *     location. If you haven't, specify the storage location here. This lets
- *     the core module know what to delete when an administrator manually
- *     removes an achievement unlock from a user. If your achievement
- *     tracks statistics that are NOT set with achievements_storage_get()
- *     or _set, you don't have to define the 'storage' key.
- *   - secret: (optional) The achievement displays on a user's Achievements
- *     tab but does not reveal its title, description, or points until the
- *     user has unlocked it. Compatible with 'invisible'.
- *   - invisible: (optional) The achievement does NOT display on a user's
- *     Achievements tab, but does show up on the leaderboards when necessary.
- *     Compatible with 'secret' (i.e., if another user has unlocked an
- *     invisible achievement, a user who has not unlocked it will see the
- *     placeholder secret text instead of the actual achievement itself).
- *
- *   Achievements can also be categorized into groups. Groups are simply
- *   arrays whose keys are internal group IDs and whose values identify
- *   the 'title' of the group as well as the array of 'achievements' that
- *   correspond to that group. If some achievements are within a group and
- *   some achievements are without a group, the groupless achievements will
- *   automatically be placed into a "Miscellany" category.
- */
+* @file
+* Badges and hooks for CoderDojo
+* See achievements.api.php for more info
+*/
+
 function coderdojo_ic_achievements_info() {
   $achievements = array(
     'belts' => array(
@@ -60,7 +13,8 @@ function coderdojo_ic_achievements_info() {
         'belt_white' => array(
           'title'       => t('White Belt (Initiate)'),
           'description' => t("Attended CoderDojo for 5 sessions"),
-          'points'      => 20,
+          'points'      => 10,
+          'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/belts/white.png'
@@ -70,6 +24,7 @@ function coderdojo_ic_achievements_info() {
           'title'       => t('Yellow Belt (Trainee)'),
           'description' => t("Obtained White belt and 5 basic badges"),
           'points'      => 200,
+          'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/belts/yellow.png'
@@ -79,6 +34,7 @@ function coderdojo_ic_achievements_info() {
           'title'       => t('Blue Belt (Adherent)'),
           'description' => t("Obtained Yellow belt, 1 junior badges and 3 basic badges"),
           'points'      => 300,
+          'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/belts/blue.png'
@@ -88,6 +44,7 @@ function coderdojo_ic_achievements_info() {
           'title'       => t('Red Belt (Apprentice)'),
           'description' => t("Obtained Blue belt, 3 junior badges and 1 senior badge"),
           'points'      => 500,
+          'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/belts/red.png'
@@ -97,6 +54,7 @@ function coderdojo_ic_achievements_info() {
           'title'       => t('Black Belt (Master)'),
           'description' => t("Obtained Red belt and 4 senior badges"),
           'points'      => 1000,
+          'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/belts/black.png'
@@ -111,7 +69,8 @@ function coderdojo_ic_achievements_info() {
         'html5_basic' => array(
           'title'       => t('Basic HTML5'),
           'description' => t('Completed basic HTML5 application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/html5/html5_basic.png'
@@ -120,7 +79,8 @@ function coderdojo_ic_achievements_info() {
         'html5_junior' => array(
           'title'       => t('Junior HTML5'),
           'description' => t('Completed junior HTML5 application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'junior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/html5/html5_junior.png'
@@ -129,7 +89,8 @@ function coderdojo_ic_achievements_info() {
         'html5_senior' => array(
           'title'       => t('Senior HTML5'),
           'description' => t('Completed senior HTML5 application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/html5/html5_senior.png'
@@ -139,7 +100,8 @@ function coderdojo_ic_achievements_info() {
         'java_basic' => array(
           'title'       => t('Basic Java'),
           'description' => t('Completed basic Java application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/java/java_basic.png'
@@ -148,7 +110,8 @@ function coderdojo_ic_achievements_info() {
         'java_junior' => array(
           'title'       => t('Junior Java'),
           'description' => t('Completed junior Java application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'junior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/java/java_junior.png'
@@ -157,7 +120,8 @@ function coderdojo_ic_achievements_info() {
         'java_senior' => array(
           'title'       => t('Senior Java'),
           'description' => t('Completed senior Java application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/java/java_senior.png'
@@ -166,7 +130,8 @@ function coderdojo_ic_achievements_info() {
         'java_minecraft_modder' => array(
           'title'       => t('Minecraft Modder'),
           'description' => t('Completed Minecraft modding application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'other_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/java/java_minecraft_modder.png'
@@ -176,7 +141,8 @@ function coderdojo_ic_achievements_info() {
         'javascript_basic' => array(
           'title'       => t('Basic JavaScript'),
           'description' => t('Completed basic JavaScript application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_basic.png'
@@ -185,7 +151,8 @@ function coderdojo_ic_achievements_info() {
         'javascript_junior' => array(
           'title'       => t('Junior JavaScript'),
           'description' => t('Completed junior JavaScript application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'junior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_junior.png'
@@ -194,39 +161,86 @@ function coderdojo_ic_achievements_info() {
         'javascript_senior' => array(
           'title'       => t('Senior JavaScript'),
           'description' => t('Completed senior JavaScript application'),
-          'points'      => 10,
+          'points'      => 20,
+          'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_senior.png'
           ),
         ),
-
       ),
     ),
   );
-
-    // An example of achievement groups: 'article-creation' is the group ID,
-    // "Article creation" is the group title, and all relevant achievements are
-    // placed in an 'achievements' array. The ungrouped comment achievements
-    // above will be automatically pushed into a "Miscellany" group.
-  /*  'article-creation' => array(
-      'title' => t('Article creation'),
-      'achievements' => array(HTML5_1
-        'node-mondays' => array(
-          'title'       => t('Published some content on a Monday'),
-          'description' => t("Go back to bed: it's still the weekend!"),
-          'points'      => 5,
-          'images' => array(
-            'unlocked'  => '/sites/default/files/example1.png',
-            'locked'    => '/sites/default/files/example2.png',
-            'secret'    => '/sites/default/files/example3.png'
-            // all default images have been replaced.
-          ),
-        ),
-      ),
-    ),
-  );
-  */
 
   return $achievements;
+}
+
+
+/**
+ * Implements hook_belts_unlocked().
+ *
+ * This hook is invoked after an achievement has been unlocked and all
+ * the relevant information has been stored or updated in the database.
+ *
+ * @param $achievement
+ *  An array of information about the achievement.
+ * @param $uid
+ *  The user ID who has unlocked the achievement.
+ */
+function hook_belts_unlocked($achievement, $uid) {
+  if (strpos($achievement->id, 'belt') !== FALSE) {
+      // EMAIL parents/mentors to set awards date
+  }
+  else {
+     // They have earned a badge
+     // Check if they have earned a belt
+     $current_belt = achievements_storage_get('belt_count', $uid);
+     $current_basic = achievements_storage_get('basic_badge_count', $uid);
+     $current_junior = achievements_storage_get('junior_badge_count', $uid);
+     $current_senior = achievements_storage_get('senior_badge_count', $uid);
+     $current_social = achievements_storage_get('social_badge_count', $uid);
+     // TODO: Add attendence variable and check
+     // if ( ($current_belt == 0) && ($attendance >= 5) ) {
+     if ($current_belt == 0) {
+         // Earn white
+         acheivements_unlocked('belt_white', $uid);
+     } elseif (($current_belt == 1) && ($current_basic >= 5) && ($current_social == 1)) {
+         // Earn yellow
+         acheivements_unlocked('belt_yellow', $uid);
+     } elseif (($current_belt == 2) && ($current_basic >= 8) && ($current_junior >= 1) && ($current_social == 2)) {
+         // Earn blue
+         acheivements_unlocked('belt_blue', $uid);
+     } elseif (($current_belt == 3) && ($current_junior >= 4) && ($current_senior >= 1) && ($current_social == 3)) {
+         // Earn red
+         acheivements_unlocked('belt_red', $uid);
+     } elseif (($current_belt == 4) && ($current_senior >= 5) && ($current_social == 4)) {
+         // Earn black
+         acheivements_unlocked('belt_black', $uid);
+         // TODO: Do something huge: tweet, email all members, explode, etc.
+     }
+  }
+}
+
+
+/**
+ * Implements hook_achievements_access_earn().
+ *
+ * Allows you to programmatically determine if a user has access to earn
+ * achievements. We do already have an "earn achievements" permission, but
+ * this allows more complex methods of determining that privilege. For an
+ * example, see the achievements_optout.module, which allows a user to opt-out
+ * of earning achievements, even if you've already granted them permission to.
+ *
+ * @param $uid
+ *   The user ID whose access is being questioned.
+ *
+ * @return
+ *   TRUE if the $uid can earn achievements, FALSE if they can't,
+ *   or NULL if there's no change to the user's default access.
+ */
+function achievements_access_earn($uid) {
+  $account = user_load($uid);
+  if ($account->role == 'student') {
+    return TRUE;
+  }
 }
