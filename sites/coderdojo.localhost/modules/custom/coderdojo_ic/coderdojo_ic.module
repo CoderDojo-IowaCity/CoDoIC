@@ -7,13 +7,14 @@
 
 function coderdojo_ic_achievements_info() {
   $achievements = array(
-    'belts' => array(
-      'title'=>'Belts',
+    // Belts
+    'belts_group' => array(
+      'title' => t('Belts'),
       'achievements' => array(
         'belt_white' => array(
           'title'       => t('White Belt (Initiate)'),
           'description' => t("Attended CoderDojo for 5 sessions"),
-          'points'      => 10,
+          'points'      => 100,
           'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -33,7 +34,7 @@ function coderdojo_ic_achievements_info() {
         'belt_blue' => array(
           'title'       => t('Blue Belt (Adherent)'),
           'description' => t("Obtained Yellow belt, 1 junior badges and 3 basic badges"),
-          'points'      => 300,
+          'points'      => 400,
           'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -43,7 +44,7 @@ function coderdojo_ic_achievements_info() {
         'belt_red' => array(
           'title'       => t('Red Belt (Apprentice)'),
           'description' => t("Obtained Blue belt, 3 junior badges and 1 senior badge"),
-          'points'      => 500,
+          'points'      => 800,
           'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -53,7 +54,7 @@ function coderdojo_ic_achievements_info() {
         'belt_black' => array(
           'title'       => t('Black Belt (Master)'),
           'description' => t("Obtained Red belt and 4 senior badges"),
-          'points'      => 1000,
+          'points'      => 1600,
           'storage'     => 'belt_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -62,14 +63,14 @@ function coderdojo_ic_achievements_info() {
         ),
       ),
     ),
-    'badges' => array(
-      'title'=>'Badges',
+    // HTML5
+    'html5_group' => array(
+      'title'=>t('HTML5'),
       'achievements' => array(
-        // HTML5
         'html5_basic' => array(
           'title'       => t('Basic HTML5'),
           'description' => t('Completed basic HTML5 application'),
-          'points'      => 20,
+          'points'      => 10,
           'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -89,18 +90,23 @@ function coderdojo_ic_achievements_info() {
         'html5_senior' => array(
           'title'       => t('Senior HTML5'),
           'description' => t('Completed senior HTML5 application'),
-          'points'      => 20,
+          'points'      => 40,
           'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/html5/html5_senior.png'
           ),
         ),
-        // Java
+      ),
+    ),
+    // Java
+    'java_group' => array(
+      'title' => t('Java'),
+      'achievements' => array(
         'java_basic' => array(
           'title'       => t('Basic Java'),
           'description' => t('Completed basic Java application'),
-          'points'      => 20,
+          'points'      => 10,
           'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -120,7 +126,7 @@ function coderdojo_ic_achievements_info() {
         'java_senior' => array(
           'title'       => t('Senior Java'),
           'description' => t('Completed senior Java application'),
-          'points'      => 20,
+          'points'      => 40,
           'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -130,18 +136,23 @@ function coderdojo_ic_achievements_info() {
         'java_minecraft_modder' => array(
           'title'       => t('Minecraft Modder'),
           'description' => t('Completed Minecraft modding application'),
-          'points'      => 20,
+          'points'      => 5,
           'storage'     => 'other_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/java/java_minecraft_modder.png'
           ),
         ),
-        // JS
+      ),
+    ),
+    // JS
+    'javascript_group' => array(
+      'title' => t('JavaScript'),
+      'achievements' => array(
         'javascript_basic' => array(
           'title'       => t('Basic JavaScript'),
           'description' => t('Completed basic JavaScript application'),
-          'points'      => 20,
+          'points'      => 10,
           'storage'     => 'basic_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
@@ -161,11 +172,119 @@ function coderdojo_ic_achievements_info() {
         'javascript_senior' => array(
           'title'       => t('Senior JavaScript'),
           'description' => t('Completed senior JavaScript application'),
-          'points'      => 20,
+          'points'      => 40,
           'storage'     => 'senior_badge_count',
           'images' => array(
             'locked'  => '/sites/default/achievements/default_70_grey.png',
             'unlocked'  => '/sites/default/achievements/badges/javascript/javascript_senior.png'
+          ),
+        ),
+      ),
+    ),
+    // Python
+    'python_group' => array(
+      'title' => t('Python'),
+      'achievements' => array(
+        'python_basic' => array(
+          'title'       => t('Basic Python'),
+          'description' => t('Completed basic Python application'),
+          'points'      => 10,
+          'storage'     => 'basic_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/python/python_basic.png'
+          ),
+        ),
+        'python_junior' => array(
+          'title'       => t('Junior Python'),
+          'description' => t('Completed junior Python application'),
+          'points'      => 20,
+          'storage'     => 'junior_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/python/python_junior.png'
+          ),
+        ),
+        'python_senior' => array(
+          'title'       => t('Senior Python'),
+          'description' => t('Completed senior Python application'),
+          'points'      => 40,
+          'storage'     => 'senior_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/python/python_senior.png'
+          ),
+        ),
+      ),
+    ),
+    // C#
+    'csharp_group' => array(
+      'title' => t('C#'),
+      'achievements' => array(
+        'csharp_basic' => array(
+          'title'       => t('Basic C#'),
+          'description' => t('Completed basic C# application'),
+          'points'      => 10,
+          'storage'     => 'basic_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/csharp/csharp_basic.png'
+          ),
+        ),
+        'csharp_junior' => array(
+          'title'       => t('Junior C#'),
+          'description' => t('Completed junior C# application'),
+          'points'      => 20,
+          'storage'     => 'junior_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/csharp/csharp_junior.png'
+          ),
+        ),
+        'csharp_senior' => array(
+          'title'       => t('Senior C#'),
+          'description' => t('Completed senior C# application'),
+          'points'      => 40,
+          'storage'     => 'senior_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/csharp/csharp_senior.png'
+          ),
+        ),
+      ),
+    ),
+    // social good
+    'social_group' => array(
+      'title' => t('Social Good'),
+      'achievements' => array(
+        'social_tutorial' => array(
+          'title'       => t('Benevolent Guru'),
+          'description' => t('Conduct a tutorial during CoderDojo'),
+          'points'      => 80,
+          'storage'     => 'social_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/social/social_tutorial.png'
+          ),
+        ),
+        'social_website' => array(
+          'title'       => t('Good Samaritan'),
+          'description' => t('Create a website page for a local non-profit'),
+          'points'      => 80,
+          'storage'     => 'social_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/social/social_website.png'
+          ),
+        ),
+        'social_seniors' => array(
+          'title'       => t('Aged Wisdom'),
+          'description' => t('Conduct a language tutorial for a local nursing home'),
+          'points'      => 80,
+          'storage'     => 'social_badge_count',
+          'images' => array(
+            'locked'  => '/sites/default/achievements/default_70_grey.png',
+            'unlocked'  => '/sites/default/achievements/badges/social/social_seniors.png'
           ),
         ),
       ),
@@ -177,7 +296,7 @@ function coderdojo_ic_achievements_info() {
 
 
 /**
- * Implements hook_belts_unlocked().
+ * Implements hook_achievements_unlocked().
  *
  * This hook is invoked after an achievement has been unlocked and all
  * the relevant information has been stored or updated in the database.
@@ -187,38 +306,56 @@ function coderdojo_ic_achievements_info() {
  * @param $uid
  *  The user ID who has unlocked the achievement.
  */
-function hook_belts_unlocked($achievement, $uid) {
-  if (strpos($achievement->id, 'belt') !== FALSE) {
-      // EMAIL parents/mentors to set awards date
+function coderdojo_ic_achievements_unlocked($achievement, $uid) {
+//print_r($achievement); exit();
+if ($achievement->group_id == 'belts_group') {
+     belt_unlocked($achievement, $uid);
   }
   else {
-     // They have earned a badge
-     // Check if they have earned a belt
-     $current_belt = achievements_storage_get('belt_count', $uid);
-     $current_basic = achievements_storage_get('basic_badge_count', $uid);
-     $current_junior = achievements_storage_get('junior_badge_count', $uid);
-     $current_senior = achievements_storage_get('senior_badge_count', $uid);
-     $current_social = achievements_storage_get('social_badge_count', $uid);
-     // TODO: Add attendence variable and check
-     // if ( ($current_belt == 0) && ($attendance >= 5) ) {
+     badge_unlocked($achievement, $uid);
+  }
+}
+
+/**
+* Function for belt unlocking
+*
+*/
+function belt_unlocked($achievement, $uid) {
+   // TODO: EMAIL parents/mentors to set awards date
+   if ($achievement->id == 'belt_black') {
+      // TODO: Do something huge: tweet, email all members, explode, etc.
+   }
+}
+
+/**
+* Function for badge unlocking and auto-belt unlocking
+*
+*/
+function badge_unlocked($achievement, $uid) {
+    // Get badge counts by level
+    $current_basic = achievements_storage_get('basic_badge_count', $uid);
+    $current_junior = achievements_storage_get('junior_badge_count', $uid);
+    $current_senior = achievements_storage_get('senior_badge_count', $uid);
+    $current_social = achievements_storage_get('social_badge_count', $uid);
+    $current_belt = achievements_storage_get('belt_count', $uid);
+    // TODO: Add attendence variable and check
      if ($current_belt == 0) {
          // Earn white
-         acheivements_unlocked('belt_white', $uid);
-     } elseif (($current_belt == 1) && ($current_basic >= 5) && ($current_social == 1)) {
+         achievements_unlocked('belt_white', $uid);
+     } elseif (($current_belt == 1) && ($current_basic >= 5) && ($current_social >= 1)) {
          // Earn yellow
-         acheivements_unlocked('belt_yellow', $uid);
-     } elseif (($current_belt == 2) && ($current_basic >= 8) && ($current_junior >= 1) && ($current_social == 2)) {
+         achievements_unlocked('belt_yellow', $uid);
+exit('YELLOW GIVEN');
+     } elseif (($current_belt == 2) && ($current_basic >= 8) && ($current_junior >= 1) && ($current_social >= 2)) {
          // Earn blue
-         acheivements_unlocked('belt_blue', $uid);
-     } elseif (($current_belt == 3) && ($current_junior >= 4) && ($current_senior >= 1) && ($current_social == 3)) {
+         achievements_unlocked('belt_blue', $uid);
+     } elseif (($current_belt == 3) && ($current_junior >= 4) && ($current_senior >= 1) && ($current_social >= 3)) {
          // Earn red
-         acheivements_unlocked('belt_red', $uid);
-     } elseif (($current_belt == 4) && ($current_senior >= 5) && ($current_social == 4)) {
+         achievements_unlocked('belt_red', $uid);
+     } elseif (($current_belt == 4) && ($current_senior >= 5) && ($current_social >= 4)) {
          // Earn black
-         acheivements_unlocked('belt_black', $uid);
-         // TODO: Do something huge: tweet, email all members, explode, etc.
+         achievements_unlocked('belt_black', $uid);
      }
-  }
 }
 
 
@@ -238,7 +375,7 @@ function hook_belts_unlocked($achievement, $uid) {
  *   TRUE if the $uid can earn achievements, FALSE if they can't,
  *   or NULL if there's no change to the user's default access.
  */
-function achievements_access_earn($uid) {
+function hook_achievements_access_earn($uid) {
   $account = user_load($uid);
   if ($account->role == 'student') {
     return TRUE;
