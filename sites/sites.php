@@ -55,5 +55,6 @@
  */
 $sites = array();
 $sites['8082.localhost.coderdojo'] = 'coderdojo.localhost';
-$sites['com.ictechnest.coderdojo.test'] = 'coderdojo.localhost';
+$sites['com.ictechnest.coderdojo.dev'] = 'coderdojo.localhost';
 $sites['com.ictechnest.coderdojo'] = 'coderdojo.localhost';
+
