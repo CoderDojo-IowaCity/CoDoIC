@@ -1,0 +1,3 @@
+[submodule "sites/all/modules/contrib/school_administration"]
+	path = sites/all/modules/contrib/school_administration
+	url = http://git.drupal.org/project/school_administration.git
